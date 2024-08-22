@@ -95,12 +95,12 @@ export function getMimeType(imgFileExt) {
     case 'gif':
       mimeType = 'image/gif'
       break
-    case 'emf':
-      mimeType = 'image/x-emf'
-      break
-    case 'wmf':
-      mimeType = 'image/x-wmf'
-      break
+    // case 'emf':
+    //   mimeType = 'image/x-emf'
+    //   break
+    // case 'wmf':
+    //   mimeType = 'image/x-wmf'
+    //   break
     case 'svg':
       mimeType = 'image/svg+xml'
       break
@@ -129,10 +129,11 @@ export function getMimeType(imgFileExt) {
       mimeType = 'audio/wav'
       break
     case 'emf':
-      mimeType = 'image/emf';
-      break;
+      mimeType = 'image/emf'
+      break
     case 'wmf':
-      mimeType = 'image/wmf';
+      mimeType = 'image/wmf'
+    // eslint-disable-next-line no-fallthrough
     case 'tif':
     case 'tiff':
       mimeType = 'image/tiff'
