@@ -1,5 +1,6 @@
 import { getTextByPathList } from './utils'
 import { getShadow } from './shadow'
+import { getSchemeColorFromTheme } from './schemeColor'
 
 export function getFontType(node, type, warpObj) {
   let typeface = getTextByPathList(node, ['a:rPr', 'a:latin', 'attrs', 'typeface'])
@@ -21,8 +22,16 @@ export function getFontType(node, type, warpObj) {
   return typeface || ''
 }
 
-export function getFontColor(node) {
-  const color = getTextByPathList(node, ['a:rPr', 'a:solidFill', 'a:srgbClr', 'attrs', 'val'])
+export function getFontColor(node, spNode, warpObj) {
+  let color = getTextByPathList(node, ['a:rPr', 'a:solidFill', 'a:srgbClr', 'attrs', 'val'])
+  if (!color) {
+    const schemeClr = 'a:' + getTextByPathList(node, ['a:rPr', 'a:solidFill', 'a:schemeClr', 'attrs', 'val'])
+    color = getSchemeColorFromTheme(schemeClr, warpObj)
+  }
+  if (!color) {
+    const schemeClr = 'a:' + getTextByPathList(spNode, ['p:style', 'a:fontRef', 'a:schemeClr', 'attrs', 'val'])
+    color = getSchemeColorFromTheme(schemeClr, warpObj)
+  }
   return color ? `#${color}` : ''
 }
 
