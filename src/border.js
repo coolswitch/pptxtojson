@@ -36,7 +36,7 @@ export function getBorder(node, elType, warpObj) {
     }
   }
 
-  if (!borderColor) borderColor = '#000'
+  if (!borderColor) borderColor = 'transparent'
   else borderColor = `#${borderColor}`
 
   const type = getTextByPathList(lineNode, ['a:prstDash', 'attrs', 'val'])
